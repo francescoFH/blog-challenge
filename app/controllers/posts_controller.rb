@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "The post was created!"
-      redirect_to @post      
+      redirect_to @post
     else
       render 'new'
     end
@@ -26,8 +26,12 @@ class PostsController < ApplicationController
   def edit
   end
 
-
   def update
+    if @post.update(post_params)
+      flas[:success] = "Update successful!"
+    else
+      render 'edit'
+    end
   end
 
   def destroy
