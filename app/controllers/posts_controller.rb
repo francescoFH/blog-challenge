@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       @category_id = Category.find_by(name: params[:category]).id
       @posts = Post.where(category_id: @category_id).order("created_at DESC")
     end
-    
+
   end
 
   def show
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flas[:success] = "Update successful!"
+      flash[:success] = "Update successful!"
       redirect_to @post
     else
       render 'edit'
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destory
+    @post.destroy
     flash[:success] = "Post destroyed!"
     redirect_to root_path
   end
